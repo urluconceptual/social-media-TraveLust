@@ -17,6 +17,7 @@ namespace TraveLust.Models
 
         public string? Description { get; set; }
 
+        [Required(ErrorMessage = "Photo is mandatory!")]
         public string? Photo { get; set; }
 
         [Required(ErrorMessage = "Please provide a price for this sight!")]
@@ -27,5 +28,8 @@ namespace TraveLust.Models
         [Required(ErrorMessage = "Please select the city of this sight!")]
         public int? CityId { get; set; }
         public virtual City? City { get; set; }
+
+        [NotMapped]
+        public IEnumerable<SelectListItem>? AllCities { get; set; }
     }
 }

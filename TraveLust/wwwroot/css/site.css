@@ -16,3 +16,7 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.note-editor .dropdown-toggle::after {
+    display: none;
+}
