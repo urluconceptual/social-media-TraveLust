@@ -12,5 +12,7 @@ namespace TraveLust.Data
         }
 
         public DbSet<Post> Posts { get; set; }
+
+        public DbSet<City> Cities { get; set; }
     }
 }

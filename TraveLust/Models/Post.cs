@@ -23,5 +23,9 @@ namespace TraveLust.Models
         public double Price { get; set; }
 
         public float? Rating { get; set; }
+
+        [Required(ErrorMessage = "Please select the city of this sight!")]
+        public int? CityId { get; set; }
+        public virtual City? City { get; set; }
     }
 }

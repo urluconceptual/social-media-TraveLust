@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TraveLust.Data;
 
 namespace TraveLust.Controllers
@@ -17,7 +18,7 @@ namespace TraveLust.Controllers
 
         public IActionResult Index()
         {
-            var posts = db.Posts;
+            var posts = db.Posts.Include("City");
 
             ViewBag.Posts = posts;
 
