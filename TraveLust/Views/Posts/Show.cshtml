@@ -26,6 +26,15 @@
         <li class="list-group-item">
             <div class="card-text">@Html.Raw(Model.Description)</div>
         </li>
+
+        <li class="list-group-item">
+            <div class="d-flex flex-row align-content-center justify-content-start">
+                <!--<a class="btn btn-outline-secondary" href="/Posts/Edit/@Model.PostId">Editeaza produs</a>-->
+                <form method="post" action="/Posts/Delete/@Model.PostId">
+                    <button class="btn btn-outline-secondary" type="submit">Delete post</button>
+                </form>
+            </div>
+        </li>
     </ul>
 </div>
 

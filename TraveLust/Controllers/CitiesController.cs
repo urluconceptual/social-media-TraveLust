@@ -14,6 +14,8 @@ namespace TraveLust.Controllers
             db = context;
         }
 
+
+        // adding a new city
         public ActionResult New()
         {
             return View();
