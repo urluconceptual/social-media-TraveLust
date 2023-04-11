@@ -14,15 +14,21 @@ namespace TraveLust.Controllers
     {
 
         private readonly ApplicationDbContext db;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private IWebHostEnvironment _env;
 
         public PostsController(
         ApplicationDbContext context,
-        IWebHostEnvironment env
+        IWebHostEnvironment env,
+        UserManager<ApplicationUser> userManager,
+        RoleManager<IdentityRole> roleManager
         )
         {
             db = context;
             _env = env;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public IActionResult Index()
@@ -63,6 +69,9 @@ namespace TraveLust.Controllers
         [HttpPost]
         public async Task<IActionResult> New(Post post, IFormFile PostImage)
         {
+            post.Date = DateTime.Now;
+            post.UserId = _userManager.GetUserId(User);
+
             var sanitizer = new HtmlSanitizer();
 
             if (PostImage == null)
