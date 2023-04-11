@@ -1,0 +1,33 @@
+﻿@model TraveLust.Models.City
+
+<h2>New city! What city would you like to visit?</h2>
+<br />
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Cities", method: FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    // adding the name of the city
+    @Html.Label("CityName", "Enter city name")
+    <br />
+    @Html.TextBox("CityName", null, new { @class = "form-control" })
+    <br />
+    <br />
+    @Html.ValidationMessageFor(m => m.CityName, null, new { @class = "text-danger" })
+    <br />
+    <br />
+
+
+    // adding the name of the country
+    @Html.Label("Country", "Enter country name")
+    <br />
+    @Html.TextBox("Country", null, new { @class = "form-control" })
+    <br />
+    <br />
+    @Html.ValidationMessageFor(m => m.Country, null, new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <button class="btn btn-outline-secondary" type="submit">Add city!</button>
+
+}
