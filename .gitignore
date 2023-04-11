@@ -364,3 +364,6 @@ FodyWeavers.xsd
 
 # Exclude all files from Migrations folder
 TraveLust/Data/Migrations/
+
+# Exclude all files from Properties folder
+TraveLust/Properties/
