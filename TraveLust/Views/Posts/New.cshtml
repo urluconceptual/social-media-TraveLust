@@ -5,7 +5,7 @@
 
 @using (Html.BeginForm(actionName: "New", controllerName: "Posts", method: FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-//    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
     @Html.Label("Title", "Sight to visit")
     <br />
@@ -30,9 +30,9 @@
     @Html.TextBox("PostImage", null, new { type = "file", @class = "form-control" })
     <br />
     <br />
-    @Html.ValidationMessageFor(m => m.Photo, null, new { @class = "text-danger" })
-    <br />
-    <br />
+    //@Html.ValidationMessageFor(m => m.Photo, null, new { @class = "text-danger" })
+    //<br />
+    //<br />
 
     <label>Select city: </label>
     @Html.DropDownListFor(m => m.CityId, new SelectList(Model.AllCities, "Value", "Text"),
