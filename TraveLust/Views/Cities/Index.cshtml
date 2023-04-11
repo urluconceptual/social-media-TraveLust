@@ -1,0 +1,24 @@
+﻿<h2>All the cities on TraveLust</h2>
+<br />
+
+@if (TempData.ContainsKey("message"))
+{
+    <h1>@ViewBag.message</h1>
+}
+
+@foreach (var city in ViewBag.Cities)
+{
+    <hr />
+    <p>@city.CityName, @city.Country</p>
+    <!--
+        <a class="btn btn-outline-secondary" href="/Categories/Edit/@city.CityId">Edit city</a>
+        <a class="btn btn-outline-secondary" href="/Categories/Delete/@city.CityId">Delete city</a>
+    -->
+    <br />
+    <br />
+}
+<hr />
+<br />
+<p>Can't find the city you are looking for?</p>
+<a class="btn btn-outline-secondary" href="/Cities/New">Add a new city!</a>
+<br />

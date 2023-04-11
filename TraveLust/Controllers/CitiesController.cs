@@ -14,6 +14,22 @@ namespace TraveLust.Controllers
             db = context;
         }
 
+        // display all cities
+        public ActionResult Index()
+        {
+            if (TempData.ContainsKey("message"))
+            {
+                ViewBag.message = TempData["message"].ToString();
+            }
+
+
+            var cities = from city in db.Cities
+                             orderby city.CityName
+                             select city;
+            ViewBag.Cities = cities;
+            return View();
+        }
+
 
         // adding a new city
         public ActionResult New()
