@@ -54,7 +54,5 @@ namespace TraveLust.Controllers
                 return View(city);
             }
         }
-
-
     }
 }

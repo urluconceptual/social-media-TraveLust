@@ -1,1 +1,56 @@
-﻿
+﻿@model TraveLust.Models.Post
+
+<h2>Modificare "@Model.PostId. @Model.Title"</h2>
+<br />
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Posts", method: FormMethod.Post, routeValues: new { id = Model.PostId, enctype = "multipart/form-data" }))
+{
+	@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+	@Html.Label("Title", "Sight to visit")
+	<br />
+	@Html.EditorFor(m=> m.Title, new { htmlAttributes = new { @class = "form-control" }, value = Model.Title })
+	<br />
+	<br />
+	@Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+	<br />
+	<br />
+
+	@Html.Label("Description", "Short description")
+	<br />
+	@Html.TextAreaFor(m => m.Description, new { @class = "summernote" })
+	<br />
+	<br />
+	@Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger" })
+	<br />
+	<br />
+
+
+	@Html.Label("PostImage", "Photo")
+	<br />
+	@Html.TextBox("PostImage", null, new { type = "file", @class = "form-control", value="" })
+	<br />
+	<br />
+	@Html.HiddenFor(m => m.Photo, new {value=Model.Photo})
+
+	@Html.HiddenFor(m => m.Rating)
+
+	<label>Select city: </label>
+	@Html.DropDownListFor(m => m.CityId, new SelectList(Model.AllCities, "Value", "Text"),
+    "Select city", new { @class = "form-control" })
+	<br />
+	@Html.ValidationMessageFor(m => m.City, null, new { @class = "text-danger" })
+	<br />
+	<br />
+
+	@Html.Label("Price", "Price")
+	<br />
+	@Html.TextBoxFor(m => m.Price, new { @class = "form-control", type="numeric", min="1" })
+	<br />
+	<br />
+	@Html.ValidationMessageFor(m => m.Price, null, new { @class = "text-danger" })
+	<br />
+	<br />
+
+	<button class="btn btn-outline-secondary" type="submit">Edit post!</button>
+}
