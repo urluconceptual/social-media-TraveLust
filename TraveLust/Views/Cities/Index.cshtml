@@ -1,4 +1,5 @@
-﻿<h2>All the cities on TraveLust</h2>
+﻿@model TraveLust.Models.City
+<h2>All the cities on TraveLust</h2>
 <br />
 
 @if (TempData.ContainsKey("message"))
@@ -10,10 +11,13 @@
 {
     <hr />
     <p>@city.CityName, @city.Country</p>
+
     <a class="btn btn-outline-secondary" href="/Cities/Edit/@city.CityId">Edit city</a>
-    <!--
-        <a class="btn btn-outline-secondary" href="/Cities/Delete/@city.CityId">Delete city</a>
-    -->
+
+    <form method="post" action="/Cities/Delete/@city.CityId">
+        <button class="btn btn-outline-secondary" type="submit">Delete city</button>
+    </form>
+
     <br />
     <br />
 }

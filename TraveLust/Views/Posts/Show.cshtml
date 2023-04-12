@@ -29,10 +29,13 @@
 
         <li class="list-group-item">
             <div class="d-flex flex-row align-content-center justify-content-start">
+
                 <a class="btn btn-outline-secondary" href="/Posts/Edit/@Model.PostId"><i class="bi bi-pencil-square"></i>Edit post</a>
+
                 <form method="post" action="/Posts/Delete/@Model.PostId">
                     <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-trash"></i>Delete post</button>
                 </form>
+
             </div>
         </li>
     </ul>
