@@ -54,5 +54,33 @@ namespace TraveLust.Controllers
                 return View(city);
             }
         }
+
+        // editing a post 
+        public IActionResult Edit(int id)
+        {
+            City city = db.Cities.Where(c => c.CityId == id).First();
+            return View(city);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int id, City requestCity)
+        {
+            City city = db.Cities.Find(id);
+
+            if (ModelState.IsValid)
+            {
+                city.CityName = requestCity.CityName;
+                city.Country = requestCity.Country;
+                
+                db.SaveChanges();
+                TempData["message"] = "City edited!";
+
+                return RedirectToAction("Index"); 
+            }
+            else
+            {
+                return View(requestCity); 
+            }
+        }
     }
 }
