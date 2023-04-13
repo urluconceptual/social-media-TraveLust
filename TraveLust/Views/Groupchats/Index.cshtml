@@ -1,0 +1,27 @@
+﻿@model TraveLust.Models.Groupchat
+<h2>Your groupchats</h2>
+<br />
+
+@if (ViewBag.Message != null)
+{
+    <h2 class="alert-secondary p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
+}
+
+@foreach (var groupchat in ViewBag.Groupchats)
+{
+    <hr />
+    <p>@groupchat.Name, created by @groupchat.Creator.UserName</p>
+
+    <a class="btn btn-outline-secondary" href="/Groupchats/Edit/@groupchat.GroupchatId">Edit groupchat</a>
+
+    <form method="post" action="/Groupchats/Delete/@groupchat.GroupchatId">
+        <button class="btn btn-outline-secondary" type="submit">Leave groupchat</button>
+    </form>
+
+    <br />
+    <br />
+}
+<hr />
+<br />
+<a class="btn btn-outline-secondary" href="/Groupchats/New">Create new groupchat!</a>
+<br />

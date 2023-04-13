@@ -1,0 +1,31 @@
+﻿@model TraveLust.Models.Groupchat
+
+<h2>New groupchat!</h2>
+<br />
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Groupchats", method: FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    // adding the name of the groupchat
+    @Html.Label("Name", "Groupchat name: ")
+    <br />
+    @Html.TextBox("Name", null, new { @class = "form-control" })
+    <br />
+    <br />
+    @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("Description", "Short description: ")
+    <br />
+    @Html.TextArea("Description", null, new { @class = "summernote" })
+    <br />
+    <br />
+    @Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <button class="btn btn-outline-secondary" type="submit">Next step!</button>
+
+}

@@ -1,5 +1,4 @@
-﻿using Ganss.Xss;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TraveLust.Data;
 using TraveLust.Models;
 

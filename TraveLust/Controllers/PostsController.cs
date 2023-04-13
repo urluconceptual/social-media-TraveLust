@@ -88,15 +88,12 @@ namespace TraveLust.Controllers
 
             if (PostImage.Length > 0)
             {
-                // Generam calea de stocare a fisierului
                 var storagePath = Path.Combine(
-                _env.WebRootPath, // Luam calea folderului wwwroot
-                "images", // Adaugam calea folderului images
-                PostImage.FileName // Numele fisierului
+                _env.WebRootPath,
+                "images",
+                PostImage.FileName
                 );
-                // General calea de afisare a fisierului care va fi stocata in  baza de date
                 var databaseFileName = "/images/" + PostImage.FileName;
-                // Uploadam fisierul la calea de storage
                 using (var fileStream = new FileStream(storagePath, FileMode.Create))
                 {
                     await PostImage.CopyToAsync(fileStream);
@@ -178,15 +175,12 @@ namespace TraveLust.Controllers
 			{
 				if (ProductImage.Length > 0)
 				{
-					// Generam calea de stocare a fisierului
 					var storagePath = Path.Combine(
-					_env.WebRootPath, // Luam calea folderului wwwroot
-					"images", // Adaugam calea folderului images
-					ProductImage.FileName // Numele fisierului
+					_env.WebRootPath, 
+					"images",
+					ProductImage.FileName
 					);
-					// General calea de afisare a fisierului care va fi stocata in  baza de date
 					var databaseFileName = "/images/" + ProductImage.FileName;
-					// Uploadam fisierul la calea de storage
 					using (var fileStream = new FileStream(storagePath, FileMode.Create))
 					{
 						await ProductImage.CopyToAsync(fileStream);
