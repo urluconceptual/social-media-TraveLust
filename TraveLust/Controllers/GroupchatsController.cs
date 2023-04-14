@@ -35,6 +35,7 @@ namespace TraveLust.Controllers
                 .Where(g => g.UserInGroupchats.Any(u => u.UserId == _userManager.GetUserId(User)));
 
             ViewBag.Groupchats = groupchats;
+            ViewBag.CurrentUserId = _userManager.GetUserId(User);
 
             if (TempData.ContainsKey("message"))
             {
@@ -128,7 +129,7 @@ namespace TraveLust.Controllers
             }
         }
 
-        [NonAction]
+		[NonAction]
         public IEnumerable<SelectListItem> GetAllUsers()
         {
             var selectList = new List<SelectListItem>();

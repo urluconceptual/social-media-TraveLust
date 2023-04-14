@@ -14,7 +14,9 @@
 
     <a class="btn btn-outline-secondary" href="/Groupchats/Edit/@groupchat.GroupchatId">Edit groupchat</a>
 
-    <form method="post" action="/Groupchats/Delete/@groupchat.GroupchatId">
+    <form method="post" action="/UserInGroupchats/Delete">
+        <input type="hidden" name="UserId" value="@ViewBag.CurrentUserId" />
+        <input type="hidden" name="GroupchatId" value="@groupchat.GroupchatId" />
         <button class="btn btn-outline-secondary" type="submit">Leave groupchat</button>
     </form>
 

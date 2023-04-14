@@ -23,7 +23,7 @@ namespace TraveLust.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<UserInGroupchat>()
-            .HasKey(ug => new { ug.Id, ug.UserId, ug.GroupchatId });
+            .HasKey(ug => new { ug.UserId, ug.GroupchatId });
 
             modelBuilder.Entity<UserInGroupchat>()
             .HasOne(ab => ab.User)
