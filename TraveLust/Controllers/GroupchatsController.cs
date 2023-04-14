@@ -100,6 +100,34 @@ namespace TraveLust.Controllers
             return View(groupchat);
         }
 
+        // editing a groupchat 
+        public IActionResult Edit(int id)
+        {
+            Groupchat groupchat = db.Groupchats.Find(id);
+            return View(groupchat);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int id, Groupchat requestGroupchat)
+        {
+            Groupchat groupchat = db.Groupchats.Find(id);
+
+            if (ModelState.IsValid)
+            {
+                groupchat.Name = requestGroupchat.Name;
+                groupchat.Description = requestGroupchat.Description;
+
+                db.SaveChanges();
+                TempData["message"] = "Groupchat edited!";
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(requestGroupchat);
+            }
+        }
+
         [NonAction]
         public IEnumerable<SelectListItem> GetAllUsers()
         {

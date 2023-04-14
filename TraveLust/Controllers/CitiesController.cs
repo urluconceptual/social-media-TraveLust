@@ -54,7 +54,7 @@ namespace TraveLust.Controllers
             }
         }
 
-        // editing a post 
+        // editing a city
         public IActionResult Edit(int id)
         {
             City city = db.Cities.Where(c => c.CityId == id).First();
