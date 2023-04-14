@@ -43,5 +43,17 @@ namespace TraveLust.Controllers
 
 			return RedirectToAction("Index", "Groupchats");
 		}
-	}
+
+        [HttpPost]
+        public ActionResult RemoveUser(UserInGroupchat userInGroupchat)
+        {
+            UserInGroupchat toDelete = db.UserInGroupchats.Find(userInGroupchat.UserId, userInGroupchat.GroupchatId);
+            Groupchat groupchat = db.Groupchats.Find(userInGroupchat.GroupchatId);
+            db.UserInGroupchats.Remove(toDelete);
+            db.SaveChanges();
+            TempData["message"] = "Member removed from " + groupchat.Name + ".";
+
+            return RedirectToAction("AddFriends", "Groupchats", new {id = groupchat.GroupchatId});
+        }
+    }
 }
