@@ -27,25 +27,30 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        @if(User.IsInRole("Admin") || User.IsInRole("User") || User.IsInRole("Edtor") )
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Cities" asp-action="Index">Cities</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="New">Create new post</a>
-                        </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
+                            </li>
+						}
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cities" asp-action="Index">View all cities</a>
-                        </li>
+                        @if(User.IsInRole("User"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Groupchats" asp-action="Index">Your groupchats</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Groupchats" asp-action="Index">Your groupchats</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="New">Create new post</a>
+                            </li>
+                        }
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Groupchats" asp-action="New">Create new groupchat</a>
-                        </li>
+
+                        
                     </ul>
 
                     <partial name="_LoginPartial" />

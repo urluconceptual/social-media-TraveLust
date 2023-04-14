@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using TraveLust.Data;
-using TraveLust.Migrations;
+using TraveLust.Data.Migrations;
 using TraveLust.Models;
 
 namespace TraveLust.Controllers

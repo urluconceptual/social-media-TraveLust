@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using System.Data;
+using Microsoft.AspNetCore.Mvc;
 using TraveLust.Data;
 using TraveLust.Models;
 
@@ -55,12 +57,14 @@ namespace TraveLust.Controllers
         }
 
         // editing a city
+        [Authorize(Roles = "Editor,Admin")]
         public IActionResult Edit(int id)
         {
             City city = db.Cities.Where(c => c.CityId == id).First();
             return View(city);
         }
 
+        [Authorize(Roles = "Editor,Admin")]
         [HttpPost]
         public ActionResult Edit(int id, City requestCity)
         {
@@ -83,6 +87,7 @@ namespace TraveLust.Controllers
         }
 
         // deleting a city
+        [Authorize(Roles = "Editor,Admin")]
         [HttpPost]
         public IActionResult Delete(int id)
         {

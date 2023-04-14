@@ -32,13 +32,21 @@
         <li class="list-group-item">
             <div class="d-flex flex-row align-content-center justify-content-start">
 
-                <a class="btn btn-outline-secondary" href="/Posts/Edit/@Model.PostId"><i class="bi bi-pencil-square"></i>Edit post</a>
+                <!--users can only edit or delete their own posts, admins/ editors can edit or delete any post-->
+                @if ((Model.UserId == ViewBag.CurrentUserId && ViewBag.IsUser) || ViewBag.IsAdmin || ViewBag.IsEditor)
+                {
+                    <a class="btn btn-outline-secondary" href="/Posts/Edit/@Model.PostId"><i class="bi bi-pencil-square"></i>Edit post</a>
 
-                <form method="post" action="/Posts/Delete/@Model.PostId">
-                    <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-trash"></i>Delete post</button>
-                </form>
+                    <form method = "post" action= "/Posts/Delete/@Model.PostId" >
+                        <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-trash"></i>Delete post</button>
+                    </form>
+                }
 
-                <a class="btn btn-outline-secondary" href="/Reviews/New/@Model.PostId"><i class="bi bi-vector-pen"></i> Leave your review</a>
+                <!--only logged in users can leave a review-->
+                @if(User.IsInRole("User"))
+                {
+                    <a class="btn btn-outline-secondary" href="/Reviews/New/@Model.PostId"><i class="bi bi-vector-pen"></i> Leave your review</a>
+                }
             </div>
         </li>
     </ul>
