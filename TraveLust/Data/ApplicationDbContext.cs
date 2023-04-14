@@ -19,6 +19,8 @@ namespace TraveLust.Data
 
         public DbSet<UserInGroupchat> UserInGroupchats { get; set; }
 
+        public DbSet<Review> Reviews { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

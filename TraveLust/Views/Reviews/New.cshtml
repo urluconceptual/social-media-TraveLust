@@ -1,0 +1,32 @@
+﻿@model TraveLust.Models.Review
+
+<h2>Share your thoughts about @ViewBag.SightName with us!</h2>
+</br>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Reviews", method: FormMethod.Post, routeValues: new { id = Model.PostId }))
+{
+    @Html.Label("Text", "Your review: ")
+    <br />
+    @Html.TextArea("Text", null, new { @class = "form-control" })
+    <br />
+    <br />
+    @Html.ValidationMessageFor(m => m.Text, null, new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("Rating", "Your rating: ")
+    <br />
+    @Html.TextBox("Rating", null, new { @class = "form-control" })
+    <br />
+    <br />
+    @Html.ValidationMessageFor(m => m.Rating, null, new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.HiddenFor(m => m.UserId, new{ value = Model.UserId})
+    @Html.HiddenFor(m => m.PostId, new{ value = Model.PostId})
+    @Html.HiddenFor(m => m.Date, new{ value = DateTime.Now})
+
+    <button class="btn btn-outline-secondary" type="submit">Done!</button>
+
+}
