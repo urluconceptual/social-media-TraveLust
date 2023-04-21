@@ -36,5 +36,7 @@ namespace TraveLust.Models
         public virtual ApplicationUser? User { get; set; }
 
         public DateTime Date { get; set; }
+
+        public virtual ICollection<Review>? Reviews { get; set; }
     }
 }

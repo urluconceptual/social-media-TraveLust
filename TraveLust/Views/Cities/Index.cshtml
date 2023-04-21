@@ -1,0 +1,34 @@
+﻿@model TraveLust.Models.City
+<h2>All the cities on TraveLust</h2>
+<br />
+
+@if (TempData.ContainsKey("message"))
+{
+    <h1>@ViewBag.message</h1>
+}
+
+@foreach (var city in ViewBag.Cities)
+{
+    <hr />
+    <p>@city.CityName, @city.Country</p>
+
+    @if (User.IsInRole("Admin") || User.IsInRole("Editor"))
+    {
+        <a class="btn btn-outline-secondary" href="/Cities/Edit/@city.CityId">Edit city</a>
+
+        <form method="post" action="/Cities/Delete/@city.CityId">
+            <button class="btn btn-outline-secondary" type="submit">Delete city</button>
+        </form>
+    }
+
+    <br />
+    <br />
+}
+<hr />
+<br />
+@if(User.IsInRole("Admin") || User.IsInRole("Editor") || User.IsInRole("User"))
+{
+    <p>Can't find the city you are looking for?</p>
+    <a class="btn btn-outline-secondary" href="/Cities/New">Add a new city!</a>
+}
+<br />

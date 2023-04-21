@@ -1,0 +1,29 @@
+﻿@model TraveLust.Models.Groupchat
+
+<h2>Edit "@Model.GroupchatId. @Model.Name"</h2>
+<br />
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Groupchats", method: FormMethod.Post, routeValues: new { id = Model.GroupchatId, enctype = "multipart/form-data" }))
+{
+	@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+	@Html.Label("Name", "Groupchat name: ")
+	<br />
+	@Html.EditorFor(m=> m.Name, new { htmlAttributes = new { @class = "form-control" }, value = Model.Name })
+	<br />
+	<br />
+	@Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+
+	@Html.Label("Description", "Short description")
+	<br />
+	@Html.TextAreaFor(m => m.Description, new { @class = "summernote" })
+	<br />
+	<br />
+	@Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger" })
+	<br />
+	<br />
+
+	<button class="btn btn-outline-secondary" type="submit">Edit groupchat!</button>
+
+}
+
