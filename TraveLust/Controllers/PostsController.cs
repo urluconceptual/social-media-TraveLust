@@ -49,6 +49,7 @@ namespace TraveLust.Controllers
 
 
         // show displays the details of a post
+        [Authorize(Roles = "Editor,Admin,User")]
         public IActionResult Show(int id)
         {
             Post post = db.Posts.Include("City")
@@ -131,7 +132,7 @@ namespace TraveLust.Controllers
         }
 
         // deleting a post
-        [Authorize(Roles = "Editor,Admin")]
+        [Authorize(Roles = "User,Editor,Admin")]
         [HttpPost]
         public IActionResult Delete(int id)
         {

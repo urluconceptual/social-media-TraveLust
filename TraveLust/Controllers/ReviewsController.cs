@@ -25,6 +25,7 @@ namespace TraveLust.Controllers
 
 
         //adding a review
+        [Authorize(Roles = "User")]
         public IActionResult New(int id)
         {
             Review review = new Review();
@@ -33,6 +34,7 @@ namespace TraveLust.Controllers
             return View(review);
         }
 
+        [Authorize(Roles = "User")]
         [HttpPost]
         public IActionResult New(int id, Review review)
         {
@@ -53,6 +55,7 @@ namespace TraveLust.Controllers
         }
 
         //editing a review
+        [Authorize(Roles = "User")]
         public IActionResult Edit(int id)
         {
             Review review = db.Reviews.Find(id);
@@ -69,6 +72,7 @@ namespace TraveLust.Controllers
 
         }
 
+        [Authorize(Roles = "User")]
         [HttpPost]
         public IActionResult Edit(int id, Review requestReview)
         {
@@ -104,6 +108,7 @@ namespace TraveLust.Controllers
         }
 
         //deleting a review
+        [Authorize(Roles = "User,Editor,Admin")]
         [HttpPost]
         public IActionResult Delete(int id)
         {

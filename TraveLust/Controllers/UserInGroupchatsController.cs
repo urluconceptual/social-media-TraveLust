@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Data;
 using TraveLust.Data;
 using TraveLust.Models;
 
@@ -23,6 +25,7 @@ namespace TraveLust.Controllers
             _roleManager = roleManager;
         }
 
+        [Authorize(Roles = "User")]
         [HttpPost]
         public ActionResult New(UserInGroupchat userInGroupchat)
         {
@@ -32,7 +35,8 @@ namespace TraveLust.Controllers
             return RedirectToAction("AddFriends", "Groupchats", new { groupchatId = userInGroupchat.GroupchatId });
         }
 
-		[HttpPost]
+        [Authorize(Roles = "User")]
+        [HttpPost]
 		public ActionResult Delete(UserInGroupchat userInGroupchat)
 		{
             UserInGroupchat toDelete = db.UserInGroupchats.Find(userInGroupchat.UserId, userInGroupchat.GroupchatId);
@@ -44,6 +48,7 @@ namespace TraveLust.Controllers
 			return RedirectToAction("Index", "Groupchats");
 		}
 
+        [Authorize(Roles = "User")]
         [HttpPost]
         public ActionResult RemoveUser(UserInGroupchat userInGroupchat)
         {

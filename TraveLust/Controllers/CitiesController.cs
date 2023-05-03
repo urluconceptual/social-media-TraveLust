@@ -16,6 +16,7 @@ namespace TraveLust.Controllers
         }
 
         // display all cities
+        [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult Index()
         {
             if (TempData.ContainsKey("message"))
@@ -33,11 +34,13 @@ namespace TraveLust.Controllers
 
 
         // adding a new city
+        [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult New()
         {
             return View();
         }
 
+        [Authorize(Roles = "User,Editor,Admin")]
         [HttpPost]
         public ActionResult New(City city)
         {
