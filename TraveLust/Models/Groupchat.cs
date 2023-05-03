@@ -19,6 +19,7 @@ namespace TraveLust.Models
         public virtual ApplicationUser? Creator { get; set; }
 
         public virtual ICollection<UserInGroupchat>? UserInGroupchats { get; set; }
+        public virtual ICollection<Message>? Messages { get; set; }
 
         [NotMapped]
         public IEnumerable<SelectListItem>? AllUsers { get; set; }

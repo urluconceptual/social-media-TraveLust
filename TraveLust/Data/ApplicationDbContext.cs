@@ -21,6 +21,8 @@ namespace TraveLust.Data
 
         public DbSet<Review> Reviews { get; set; }
 
+        public DbSet<Message> Messages { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
