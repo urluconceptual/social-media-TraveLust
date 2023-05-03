@@ -92,9 +92,9 @@ namespace TraveLust.Controllers
 
         // adding users to a groupchat
         [Authorize(Roles = "User")]
-        public ActionResult AddFriends(int groupchatId)
+        public ActionResult AddFriends(int id)
         {
-            Groupchat groupchat = db.Groupchats.Include("UserInGroupchats").Where(g => g.GroupchatId == groupchatId).First();
+            Groupchat groupchat = db.Groupchats.Include("UserInGroupchats").Where(g => g.GroupchatId == id).First();
             groupchat.AllUsers = GetAllUsers();
 
             if (TempData.ContainsKey("message"))
