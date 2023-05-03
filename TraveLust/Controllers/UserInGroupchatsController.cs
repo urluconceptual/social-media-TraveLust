@@ -32,7 +32,7 @@ namespace TraveLust.Controllers
             db.UserInGroupchats.Add(userInGroupchat);
             db.SaveChanges();
             TempData["messageCart"] = "Friend succesfully added to groupchat!";
-            return RedirectToAction("AddFriends", "Groupchats", new { groupchatId = userInGroupchat.GroupchatId });
+            return RedirectToAction("AddFriends", "Groupchats", new { id = userInGroupchat.GroupchatId });
         }
 
         [Authorize(Roles = "User")]
