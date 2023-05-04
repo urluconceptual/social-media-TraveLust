@@ -23,11 +23,20 @@ namespace TraveLust.Data
 
         public DbSet<Message> Messages { get; set; }
 
+        public DbSet<Itinerary> Itineraries { get; set; }
+
+        public DbSet<PostInItinerary> PostInItineraries { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<UserInGroupchat>()
             .HasKey(ug => new { ug.UserId, ug.GroupchatId });
+
+            //generated with gitHub copilot
+            modelBuilder.Entity<PostInItinerary>()
+                .HasKey(pi => new { pi.PostId, pi.ItineraryId });
 
             modelBuilder.Entity<UserInGroupchat>()
             .HasOne(ab => ab.User)
@@ -37,6 +46,15 @@ namespace TraveLust.Data
             .HasOne(ab => ab.Groupchat)
             .WithMany(ab => ab.UserInGroupchats)
             .HasForeignKey(ab => ab.GroupchatId);
+
+            modelBuilder.Entity<PostInItinerary>()
+          .HasOne(ab => ab.Post)
+          .WithMany(ab => ab.PostInItineraries)
+          .HasForeignKey(ab => ab.PostId);
+            modelBuilder.Entity<PostInItinerary>()
+            .HasOne(ab => ab.Itinerary)
+            .WithMany(ab => ab.PostInItineraries)
+            .HasForeignKey(ab => ab.ItineraryId);
         }
     }
 }
