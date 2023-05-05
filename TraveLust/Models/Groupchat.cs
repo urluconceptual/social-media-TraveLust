@@ -9,6 +9,10 @@ namespace TraveLust.Models
         [Key]
         public int GroupchatId { get; set; }
 
+        public int? ItineraryId { get; set; }
+        public virtual Itinerary? Itinerary { get; set; }
+
+
         [Required(ErrorMessage = "Groupchat name is mandatory!")]
         public string Name { get; set; }
 

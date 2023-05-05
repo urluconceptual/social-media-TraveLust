@@ -55,6 +55,12 @@ namespace TraveLust.Data
             .HasOne(ab => ab.Itinerary)
             .WithMany(ab => ab.PostInItineraries)
             .HasForeignKey(ab => ab.ItineraryId);
+
+            modelBuilder.Entity<Groupchat>()
+                .HasOne(g => g.Itinerary)
+                .WithOne(g => g.Groupchat)
+                .HasForeignKey<Itinerary>(g => g.GroupchatId);
+
         }
     }
 }

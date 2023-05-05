@@ -1,4 +1,7 @@
-﻿namespace TraveLust.Models
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace TraveLust.Models
 {
     public class Itinerary
     {
@@ -11,5 +14,8 @@
         public virtual ICollection<PostInItinerary>? PostInItineraries { get; set; }
 
         public double Buget { get; set; }
+
+        [NotMapped]
+        public IEnumerable<SelectListItem>? TopPosts { get; set; }
     }
 }
