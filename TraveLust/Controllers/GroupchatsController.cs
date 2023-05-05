@@ -169,6 +169,12 @@ namespace TraveLust.Controllers
         public ActionResult Delete(int id)
         {
             Groupchat groupchat = db.Groupchats.Find(id);
+
+            var messages = db.Messages.Where(m => m.GroupchatId == id);
+
+            db.Messages.RemoveRange(messages);
+            db.SaveChanges();
+
             db.Groupchats.Remove(groupchat);
             db.SaveChanges();
             TempData["message"] = "Groupchat deleted!";

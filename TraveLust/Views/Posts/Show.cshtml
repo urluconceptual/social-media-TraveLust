@@ -46,6 +46,7 @@
                 @if(User.IsInRole("User"))
                 {
                     <a class="btn btn-outline-secondary" href="/Reviews/New/@Model.PostId"><i class="bi bi-vector-pen"></i> Leave your review</a>
+                    <a class="btn btn-outline-secondary" href="/PostInItineraries/New/@Model.PostId"><i class="bi bi-calendar-plus"></i> Add to itinerary</a>
                 }
             </div>
         </li>
