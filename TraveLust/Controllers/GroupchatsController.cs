@@ -58,14 +58,8 @@ namespace TraveLust.Controllers
                 Itinerary itinerary = db.Itineraries
                     .Include(p => p.PostInItineraries)
                     .ThenInclude(p => p.Post)
-                    .ThenInclude(p => p.City)
                     .Where(i => i.ItineraryId == id2).FirstOrDefault();
-                IQueryable<Post> posts = itinerary
-                    .PostInItineraries
-                    .Select(p => p.Post)
-                    .AsQueryable();
                 ViewBag.Itinerary = itinerary;
-                ViewBag.Posts = posts;
             }
             return View();
         }

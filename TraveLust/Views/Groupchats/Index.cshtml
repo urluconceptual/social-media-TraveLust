@@ -79,7 +79,7 @@
                             {
                                 if (ViewBag.Itinerary == null)
                                 {
-                                    <div class="col-md-6 col-lg-7 col-xl-8" style="background-color: #31353b">
+                                    <div class="col-md-6 col-lg-7 col-xl-8">
                                         @ViewBag.Groupchat.Name
                                         <div class="pt-3 pe-3 overflow-auto" style="position: relative; height: 400px">
 
@@ -125,37 +125,39 @@
                                 }
                                 else
                                 {
-                                    <div class="col-md-6 col-lg-7 col-xl-8" style="background-color: #31353b">
+                                    <div class="col-md-6 col-lg-7 col-xl-8">
                                         <h5> This is the itinerary you're planning for @ViewBag.Groupchat.Name!</h5>
                                         <h6> Staying period: @ViewBag.Itinerary.StayingPeriod days</h6>
                                         <h6> Budget: @ViewBag.Itinerary.Budget</h6>
 
                                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                            <ol class="carousel-indicators">
-                                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                            </ol>
+                                            <div class="carousel-indicators">
+                                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                            </div>
                                             <div class="carousel-inner">
                                                 @{
                                                     bool isFirst = true;
                                                 }
-                                                @foreach (var post in ViewBag.Posts)
+                                                @foreach (var p in ViewBag.Itinerary.PostInItineraries)
                                                 {
                                                     if (isFirst)
                                                     {
-                                                        <div class="carousel-item-active">
-                                                            <div class="d-block w-100">
-                                                                <div class="card-body">
-                                                                    <img src="@post.Photo" class="card-img-top" alt="@post.Title" style="border-radius: 8px; width: 23rem; height: 30rem; ">
-                                                                    <div class="d-flex flex-row justify-content-between align-items-center">
-                                                                        <h3 class="card-title p-2">@post.Title</h3>
-                                                                        <div class="card-text p-2"><i class="bi bi-tag"></i> @post.Price €</div>
+                                                        <div class="carousel-item active">
+                                                            <div class="d-flex justify-content-center w-100 bg-secondary">
+                                                                <div class="card m-3" style="width: 15rem; background-color: white;">
+                                                                    <div class="card-body">
+                                                                        <img src="@p.Post.Photo" class="card-img-top" alt="@p.Post.Title" style="border-radius: 8px; width: 13rem; height: 15rem; ">
+                                                                        <div class="d-flex flex-row justify-content-between align-items-center">
+                                                                            <h3 class="card-title p-2">@p.Post.Title</h3>
+                                                                            <div class="card-text p-2"><i class="bi bi-tag"></i> @p.Post.Price €</div>
+                                                                        </div>
+                                                                        <h5 class="card-subtitle mb-2 text-muted">@p.Description</h5>
+
+                                                                        <a href="/Posts/Show/@p.Post.PostId" class="btn btn-outline-secondary">See post</a>
+
                                                                     </div>
-                                                                    <h5 class="card-subtitle mb-2 text-muted">@post.City.CityName, @post.City.Country</h5>
-                                                                    <div class="card-text"><i class="bi bi-star-half"></i> @post.Rating/10</div>
-
-                                                                    <a href="/Posts/Show/@post.PostId" class="btn btn-outline-secondary">See post details</a>
-
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -164,33 +166,33 @@
                                                     else
                                                     {
                                                         <div class="carousel-item">
-                                                            <div class="d-block w-100">
-                                                                <div class="card-body">
-                                                                    <img src="@post.Photo" class="card-img-top" alt="@post.Title" style="border-radius: 8px; width: 23rem; height: 30rem; ">
-                                                                    <div class="d-flex flex-row justify-content-between align-items-center">
-                                                                        <h3 class="card-title p-2">@post.Title</h3>
-                                                                        <div class="card-text p-2"><i class="bi bi-tag"></i> @post.Price €</div>
+                                                            <div class="d-flex justify-content-center w-100 bg-secondary">
+                                                                <div class="card m-3" style="width: 15rem; background-color: white;">
+                                                                    <div class="card-body">
+                                                                        <img src="@p.Post.Photo" class="card-img-top" alt="@p.Post.Title" style="border-radius: 8px; width: 13rem; height: 15rem; ">
+                                                                        <div class="d-flex flex-row justify-content-between align-items-center">
+                                                                            <h3 class="card-title p-2">@p.Post.Title</h3>
+                                                                            <div class="card-text p-2"><i class="bi bi-tag"></i> @p.Post.Price €</div>
+                                                                        </div>
+                                                                        <h5 class="card-subtitle mb-2 text-muted">@p.Description</h5>
+
+                                                                        <a href="/Posts/Show/@p.Post.PostId" class="btn btn-outline-secondary">See post</a>
+
                                                                     </div>
-                                                                    <h5 class="card-subtitle mb-2 text-muted">@post.City.CityName, @post.City.Country</h5>
-                                                                    <div class="card-text"><i class="bi bi-star-half"></i> @post.Rating/10</div>
-
-                                                                    <a href="/Posts/Show/@post.PostId" class="btn btn-outline-secondary">See post details</a>
-
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                     }
                                                 }
+                                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                                    <span class="bi bi-caret-left-square" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                                    <span class="bi bi-caret-right-square" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </button>
                                             </div>
-                                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
                                         </div>
                                     </div>
                                 }
