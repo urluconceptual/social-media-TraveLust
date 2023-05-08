@@ -54,10 +54,18 @@ namespace TraveLust.Controllers
                 TempData["message"] = "Post already in this itinerary!";
                 return RedirectToAction("New", "PostInItineraries", new { id = postInItinerary.PostId });
             }
-            db.PostInItineraries.Add(postInItinerary);
-            db.SaveChanges();
-            TempData["message"] = "Post succesfully added to itinerary!";
-            return RedirectToAction("Show", "Posts", new { id = postInItinerary.PostId });
+            if (ModelState.IsValid)
+            {
+                db.PostInItineraries.Add(postInItinerary);
+                db.SaveChanges();
+                TempData["message"] = "Post succesfully added to itinerary!";
+                return RedirectToAction("Show", "Posts", new { id = postInItinerary.PostId });
+            }
+            else
+            {
+                postInItinerary.AllItineraries = GetAllItineraries();
+                return View(postInItinerary);
+            }
         }
 
         [NonAction]

@@ -6,7 +6,6 @@ namespace TraveLust.Models
 {
     public class PostInItinerary
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int? PostId { get; set; }
 
         [Required(ErrorMessage = "Please select the itinerary for this sight!")]
