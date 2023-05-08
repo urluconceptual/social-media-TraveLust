@@ -50,10 +50,10 @@ namespace TraveLust.Controllers
 
             if (ModelState.IsValid)
             {
-                Itinerary oldItinerary = db.Itineraries.Find(itinerary.ItineraryID);
+                Itinerary oldItinerary = db.Itineraries.Find(itinerary.ItineraryId);
 
                 oldItinerary.StayingPeriod = itinerary.StayingPeriod;
-                oldItinerary.Buget = itinerary.Buget;
+                oldItinerary.Budget = itinerary.Budget;
                 db.SaveChanges();
 
                 return RedirectToAction("Index", "Groupchats", new { id = itinerary.GroupchatId });

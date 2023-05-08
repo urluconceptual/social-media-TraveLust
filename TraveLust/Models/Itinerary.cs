@@ -5,7 +5,7 @@ namespace TraveLust.Models
 {
     public class Itinerary
     {
-        public int ItineraryID { get; set; }
+        public int ItineraryId { get; set; }
 
         public int GroupchatId { get; set; }
         public virtual Groupchat? Groupchat { get; set; }
@@ -13,7 +13,7 @@ namespace TraveLust.Models
         public int StayingPeriod;
         public virtual ICollection<PostInItinerary>? PostInItineraries { get; set; }
 
-        public double Buget { get; set; }
+        public double Budget { get; set; }
 
         [NotMapped]
         public IEnumerable<SelectListItem>? TopPosts { get; set; }

@@ -12,14 +12,14 @@
 
 @using (Html.BeginForm(actionName: "New", controllerName: "Itineraries", method: FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.HiddenFor(m => m.ItineraryID, new{ value = Model.ItineraryID})
+    @Html.HiddenFor(m => m.ItineraryId, new{ value = Model.ItineraryId})
     // setting the buget for the itinerary
-    @Html.Label("Buget", "Set the buget: ")
+    @Html.Label("Budget", "Set the buget: ")
     <br />
-    @Html.TextBox("Buget", null, new { @class = "form-control" })
+    @Html.TextBox("Budget", null, new { @class = "form-control" })
     <br />
     <br />
-    @Html.ValidationMessageFor(m => m.Buget, null, new { @class = "text-danger" })
+    @Html.ValidationMessageFor(m => m.Budget, null, new { @class = "text-danger" })
     <br />
     <br />
 

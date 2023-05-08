@@ -85,7 +85,7 @@ namespace TraveLust.Controllers
             {
                 selectList.Add(new SelectListItem
                 {
-                    Value = i.ItineraryID.ToString(),
+                    Value = i.ItineraryId.ToString(),
                     Text = i.Groupchat.Name.ToString()
                 });
             }
