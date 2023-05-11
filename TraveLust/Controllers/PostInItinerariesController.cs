@@ -68,6 +68,18 @@ namespace TraveLust.Controllers
             }
         }
 
+        [Authorize(Roles = "User")]
+        [HttpPost]
+        public ActionResult RemovePost(PostInItinerary postInItinerary)
+        {
+            PostInItinerary toDelete = db.PostInItineraries.Find(postInItinerary.PostId, postInItinerary.ItineraryId);
+            Itinerary itinerary = db.Itineraries.Find(postInItinerary.ItineraryId);
+            db.PostInItineraries.Remove(toDelete); 
+            db.SaveChanges();
+            TempData["message"] = "Post removed from itinerary!";
+            return RedirectToAction("Index", "Groupchats", new {id1 = itinerary.GroupchatId, id2 = itinerary.ItineraryId });
+        }
+
         [NonAction]
         public IEnumerable<SelectListItem> GetAllItineraries()
         {

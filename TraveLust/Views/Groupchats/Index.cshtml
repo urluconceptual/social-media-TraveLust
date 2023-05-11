@@ -156,6 +156,11 @@
                                                                         <h5 class="card-subtitle mb-2 text-muted">@p.Description</h5>
 
                                                                         <a href="/Posts/Show/@p.Post.PostId" class="btn btn-outline-secondary">See post</a>
+                                                                        <form method="post" action="/PostInItineraries/RemovePost">
+                                                                            <input type ="hidden" name="PostId" value="@p.PostId"/>
+                                                                            <input type="hidden" name="ItineraryId" value="@p.ItineraryId"/>
+                                                                            <button class="btn btn-outline-secondary" type="submit">Remove</button>
+                                                                        </form>
 
                                                                     </div>
                                                                 </div>
