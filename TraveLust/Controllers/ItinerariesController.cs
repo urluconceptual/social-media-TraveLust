@@ -64,6 +64,34 @@ namespace TraveLust.Controllers
             }
         }
 
+        // editing the budget and staying period for the itinerary
+        [Authorize(Roles = "User")]
+        public IActionResult Edit(int id)
+        {
+            Itinerary itinerary = db.Itineraries.Find(id);
+            return View(itinerary); 
+        }
+
+
+        [Authorize(Roles = "User")]
+        [HttpPost]
+        public IActionResult Edit(int id, Itinerary requestItinerary)
+        {
+            Itinerary itinerary = db.Itineraries.Find(id); 
+            if (ModelState.IsValid)
+            {
+                itinerary.StayingPeriod = requestItinerary.StayingPeriod;
+                itinerary.Budget = requestItinerary.Budget;
+                db.SaveChanges();
+                TempData["message"] = "Your itinerary has been updated!";
+                return RedirectToAction("Index", "Groupchats", new { id1 = itinerary.GroupchatId, id2 = itinerary.ItineraryId });
+            }
+            else
+            {
+                return View(requestItinerary);
+            }
+        }
+
         [NonAction]
         public IEnumerable<SelectListItem> GetTopPosts()
         {
