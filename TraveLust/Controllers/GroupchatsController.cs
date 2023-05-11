@@ -49,7 +49,9 @@ namespace TraveLust.Controllers
             {
                 Groupchat groupchat = db.Groupchats.Find(id1);
                 ViewBag.Groupchat = groupchat;
-                IQueryable<Message> messages = db.Messages.Include("User").Where(m => m.GroupchatId == id1).OrderBy(m => m.Date);
+                IQueryable<Message> messages = db.Messages.Include("User")
+                                                          .Where(m => m.GroupchatId == id1)
+                                                          .OrderBy(m => m.Date);
                 ViewBag.Messages = messages;
             }
 

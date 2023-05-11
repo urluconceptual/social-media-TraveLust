@@ -10,7 +10,7 @@ namespace TraveLust.Models
         public int GroupchatId { get; set; }
         public virtual Groupchat? Groupchat { get; set; }
 
-        public int StayingPeriod;
+        public int StayingPeriod { get; set; }
         public virtual ICollection<PostInItinerary>? PostInItineraries { get; set; }
 
         public double Budget { get; set; }
