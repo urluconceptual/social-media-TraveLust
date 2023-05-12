@@ -80,6 +80,45 @@ namespace TraveLust.Controllers
             return RedirectToAction("Index", "Groupchats", new {id1 = itinerary.GroupchatId, id2 = itinerary.ItineraryId });
         }
 
+        //editing the description of a post in the itinerary
+        // id1 = postId, id2 = itineraryId
+        [Authorize(Roles = "User")]
+		[HttpGet("PostInItineraries/Edit/{id1?}/{id2?}")]
+		public IActionResult Edit(int id1, int id2)
+        {            
+            PostInItinerary post = db.PostInItineraries
+                                        .Where(p => p.PostId == id1)
+                                        .Where(p => p.ItineraryId == id2)
+                                        .FirstOrDefault();
+            return View(post);
+        }
+
+        [Authorize(Roles = "User")]
+        [HttpPost("PostInItineraries/Edit/{id1?}/{id2?}")]
+		
+		public ActionResult Edit(int id1, int id2, PostInItinerary requestPost)
+        {
+            PostInItinerary post = db.PostInItineraries
+										.Where(p => p.ItineraryId == requestPost.ItineraryId)
+										.Where(p => p.PostId == requestPost.PostId)
+										.FirstOrDefault();
+			Itinerary itinerary = db.Itineraries.Find(post.ItineraryId);
+
+            if (ModelState.IsValid)
+            {
+               post.Description = requestPost.Description;
+
+                db.SaveChanges();
+                TempData["message"] = "Post's descripsion edited!";
+
+                return RedirectToAction("Index", "Groupchats", new {id1 = itinerary.GroupchatId, id2 = itinerary.ItineraryId});
+            }
+            else
+            {
+                return View(requestPost);
+            }
+        }
+
         [NonAction]
         public IEnumerable<SelectListItem> GetAllItineraries()
         {

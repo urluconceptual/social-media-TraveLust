@@ -1,6 +1,6 @@
 ﻿@model TraveLust.Models.Post
 
-<h2>Modificare "@Model.PostId. @Model.Title"</h2>
+<h2>Change "@Model.PostId. @Model.Title"</h2>
 <br />
 
 @using (Html.BeginForm(actionName: "Edit", controllerName: "Posts", method: FormMethod.Post, routeValues: new { id = Model.PostId, enctype = "multipart/form-data" }))
