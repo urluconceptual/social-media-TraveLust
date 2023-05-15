@@ -1,0 +1,31 @@
+﻿@model TraveLust.Models.Itinerary
+
+<h2>Change itinerary </h2>
+<br />
+<br/>
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Itineraries", method: FormMethod.Post, routeValues: new { id = Model.ItineraryId }))
+{
+    @Html.HiddenFor(m => m.ItineraryId, new{ value = Model.ItineraryId})
+    // setting the buget for the itinerary
+    @Html.Label("Budget", "Set the new buget: ")
+    <br />
+    @Html.EditorFor(m => m.Budget, new { htmlAttributes = new { @class = "form-control" }, value = Model.Budget})
+    <br />
+    <br />
+    @Html.ValidationMessageFor(m => m.Budget, null, new { @class = "text-danger" })
+    <br />
+    <br />
+
+    // setting the dration of the trip for the itinerary
+    @Html.Label("StayingPeriod", "Set the new duration of the trip: ")
+    <br />
+    @Html.EditorFor(m => m.StayingPeriod, new { htmlAttributes = new { @class = "form-control" }, value = Model.StayingPeriod})
+    <br />
+    <br />
+    @Html.ValidationMessageFor(m => m.StayingPeriod, null, new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <button class="btn btn-outline-secondary" type="submit">Done!</button>
+}

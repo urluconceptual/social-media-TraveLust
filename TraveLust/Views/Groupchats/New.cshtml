@@ -3,7 +3,7 @@
 <h2>New groupchat!</h2>
 <br />
 
-@using (Html.BeginForm(actionName: "New", controllerName: "Groupchats", method: FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm(actionName: "New", controllerName: "Groupchats", method: FormMethod.Post, new { enctype = "multipart/form-data"}))
 {
     @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 

@@ -13,6 +13,10 @@ namespace TraveLust.Models
         [Required(ErrorMessage = "Please provide the name of the country!")]
         public string Country { get; set; }
 
+        // anyoane can add a new city, but only an admin can approve it
+        // if the city is approved by an admin, then it will be displayed on the website
+        public bool Approved { get; set; }
+
         public virtual ICollection<Post>? Posts { get; set; }
     }
 }

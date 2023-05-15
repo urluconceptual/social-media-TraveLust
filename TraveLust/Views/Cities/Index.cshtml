@@ -2,28 +2,80 @@
 <h2>All the cities on TraveLust</h2>
 <br />
 
-@if (TempData.ContainsKey("message"))
+@if(TempData.ContainsKey("message"))
 {
     <h1>@ViewBag.message</h1>
 }
 
-@foreach (var city in ViewBag.Cities)
+@if(User.IsInRole("Admin"))
 {
-    <hr />
-    <p>@city.CityName, @city.Country</p>
-
-    @if (User.IsInRole("Admin") || User.IsInRole("Editor"))
+    // admin can see all cities, even if they are not approved
+    @foreach (var city in ViewBag.Cities)
     {
-        <a class="btn btn-outline-secondary" href="/Cities/Edit/@city.CityId">Edit city</a>
+       if(city.Approved == true)
+       {
+           <div class="card m-3" style="width: 25rem; background-color: white;">
+                <div class="card-body">
+                    <h6>@city.CityName</h6>
+                    @*&emsp; leaves a 4 spacee gap*@
+                    <p>&emsp; @city.Country</p>
+                </div>
 
-        <form method="post" action="/Cities/Delete/@city.CityId">
-            <button class="btn btn-outline-secondary" type="submit">Delete city</button>
-        </form>
+                <div class="card-footer">
+                    <a class="btn btn-outline-secondary" href="/Cities/Edit/@city.CityId">Edit</a>
+
+                    <form method="post" action="/Cities/Delete/@city.CityId">
+                        <button class="btn btn-outline-secondary" type="submit">Delete</button>
+                    </form>
+                </div>
+           </div>
+        }
+        else
+        {
+            <div class="card m-3" style="width: 25rem; background-color: white;">
+                <div class="card-header">
+                    <h4>Pending approval</h4>
+                </div>
+                <div class="card-body">
+                    <h6>@city.CityName</h6>
+                    @*&emsp; leaves a 4 spacee gap*@
+                    <p>&emsp; @city.Country</p>
+                </div>
+                <div class="card-footer">
+                    <form method="post" action="/Cities/Approve/@city.CityId">
+                        <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-check2-square"></i></button>
+                    </form>
+
+                    <form method="post" action="/Cities/Delete/@city.CityId">
+                        <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-x-square"></i></button>
+                    </form>
+                </div>
+            </div>
+        }
+
+
+
+        <br />
+        <br />
     }
-
-    <br />
-    <br />
 }
+else
+{
+    @foreach (var city in ViewBag.Cities)
+    {
+        if (city.Approved == true)
+        {
+            <div class="card m-3" style="width: 25rem; background-color: white;">
+                <div class="card-body">
+                    <h6>@city.CityName</h6>
+                    @*&emsp; leaves a 4 spacee gap*@
+                    <p>&emsp; @city.Country</p>
+                </div>
+            </div>
+        }
+    }
+}
+
 <hr />
 <br />
 @if(User.IsInRole("Admin") || User.IsInRole("Editor") || User.IsInRole("User"))

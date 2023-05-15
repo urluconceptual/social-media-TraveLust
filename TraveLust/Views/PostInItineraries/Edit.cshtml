@@ -1,0 +1,25 @@
+﻿@model TraveLust.Models.PostInItinerary
+
+<h2>Change this post's description!</h2>
+</br>
+
+@if (ViewBag.Message != null)
+{
+    <h2 class="alert-secondary p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
+}
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "PostInItineraries", method: FormMethod.Post, new { id1 = Model.PostId, id2 = Model.ItineraryId, enctype = "multipart/form-data" }))
+{
+	@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+	
+	@Html.HiddenFor(m => m.PostId, new { value = Model.PostId} )
+	@Html.HiddenFor(m => m.ItineraryId, new { value = Model.ItineraryId}) 
+
+
+	@Html.Label("Description", "Short description")
+	<br />
+	@Html.EditorFor(m => m.Description,  new { htmlAttributes = new { @class = "form-control" }, value = Model.Description})
+	<br />
+	<br />
+	<button class="btn btn-outline-secondary" type="submit">Edit!</button>
+}

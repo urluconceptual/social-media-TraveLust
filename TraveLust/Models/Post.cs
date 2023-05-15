@@ -38,5 +38,7 @@ namespace TraveLust.Models
         public DateTime Date { get; set; }
 
         public virtual ICollection<Review>? Reviews { get; set; }
+
+        public virtual ICollection<PostInItinerary>? PostInItineraries { get; set; }
     }
 }
