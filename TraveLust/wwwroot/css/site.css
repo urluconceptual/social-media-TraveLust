@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Moirai+One&display=swap');
+
 html {
   font-size: 14px;
 }
@@ -14,7 +17,32 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #3A3240;
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+    background-color: #3A3240 !important;
+    border: none !important;
+    box-shadow: 0 3px 12px #8C4278 !important;
+}
+
+a.nav-link {
+    color: #F2F2F2 !important;
+}
+
+    a.nav-link:hover {
+        color: #8C4278 !important;
+    }
+
+.footer {
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    border-color: #8C4278 !important;
+    background-color: #3A3240 !important;
+    line-height: 30px !important;
 }
 
 .note-editor .dropdown-toggle::after {
@@ -36,4 +64,19 @@ body {
     width: 10px;
     margin-left: 2.9rem;
     margin-top: -.75rem;
+}
+
+.navbar-brand {
+    font-family: 'Moirai One', cursive !important;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #8C4278 !important;
+}
+
+.carousel-inner {
+    background-color: #3A3240 !important;
+}
+
+.banner-color {
+    background-color: #332640 !important;
 }

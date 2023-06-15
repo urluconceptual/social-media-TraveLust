@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using TraveLust.Data;
-using TraveLust.Models;
+using TraveLust.Models; 
 
 namespace TraveLust.Controllers
 {
@@ -58,6 +58,7 @@ namespace TraveLust.Controllers
             {
                 db.PostInItineraries.Add(postInItinerary);
                 db.SaveChanges();
+
                 TempData["message"] = "Post succesfully added to itinerary!";
                 return RedirectToAction("Show", "Posts", new { id = postInItinerary.PostId });
             }
@@ -73,9 +74,22 @@ namespace TraveLust.Controllers
         public ActionResult RemovePost(PostInItinerary postInItinerary)
         {
             PostInItinerary toDelete = db.PostInItineraries.Find(postInItinerary.PostId, postInItinerary.ItineraryId);
+
+            // update the spending of the itinerary
+            // subtracts the price of the post from the spending of the itinerary
+            var p = db.PostInItineraries
+                          .Include("Post")
+                          .Where(i => i.ItineraryId == postInItinerary.ItineraryId)
+                          .Select(i => i.Post.Price)
+                          .FirstOrDefault();
             Itinerary itinerary = db.Itineraries.Find(postInItinerary.ItineraryId);
+
+            itinerary.Spending -= p;
+            db.SaveChanges();
+
             db.PostInItineraries.Remove(toDelete); 
             db.SaveChanges();
+
             TempData["message"] = "Post removed from itinerary!";
             return RedirectToAction("Index", "Groupchats", new {id1 = itinerary.GroupchatId, id2 = itinerary.ItineraryId });
         }
@@ -142,5 +156,7 @@ namespace TraveLust.Controllers
             }
             return selectList;
         }
+
+       
     }
 }

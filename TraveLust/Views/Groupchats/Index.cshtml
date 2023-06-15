@@ -1,22 +1,31 @@
 ﻿@model TraveLust.Models.Message
-<h2>Your groupchats</h2>
-<br />
+
+<style>
+    .row{
+        background-color: #3A3240;
+        color: #f2f2f2;
+	}
+
+</style>
 
 @if (ViewBag.Message != null)
 {
     <h2 class="alert-secondary p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
 }
 
-<br />
-<a class="btn btn-outline-secondary" href="/Groupchats/New">Create new groupchat!</a>
-<br />
+<div class="d-flex justify-content-between" >
+    <br />
+    <h2 style="color: #f2f2f2">Your groupchats</h2>
+    <a class="btn btn-outline-secondary" href="/Groupchats/New">Create new groupchat!</a>
+    <br />
+</div>
 
-<section style="background-color: #31353b;">
+<section style="background-color: #3A3240;">
     <div class="container py-5">
         <div class="row">
             <div class="col-md-12">
 
-                <div class="card" id="chat3" style="border-radius: 15px;">
+                <div class="card" id="chat3" style="border-radius: 15px; background-color: #3A3240; border-color: #f2f2f2;">
                     <div class="card-body">
 
                         <div class="row">
@@ -28,7 +37,7 @@
                             {
                                 <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
 
-                                    <div class="p-3">
+                                    <div class="p-3" style="border-color: #f2f2f2;">
                                         <div class="overflow-auto" style="position: relative; height: 400px">
                                             <ul class="list-unstyled mb-0">
 
@@ -71,8 +80,8 @@
                             }
                             @if (ViewBag.Groupchat == null)
                             {
-                                <div class="col-md-6 col-lg-7 col-xl-8">
-                                    <h2 class="alert-secondary p-3 rounded-3 text-center mb-5">Select a groupchat to view messages!</h2>
+                                <div class="col-md-6 col-lg-7 col-xl-8" >
+                                    <h2 class="alert-secondary p-3 rounded-3 text-center mb-5" style=" background-color: #3A3240; color: #f2f2f2; ">Select a groupchat to view messages!</h2>
                                 </div>
                             }
                             else
@@ -80,7 +89,10 @@
                                 if (ViewBag.Itinerary == null)
                                 {
                                     <div class="col-md-6 col-lg-7 col-xl-8">
-                                        @ViewBag.Groupchat.Name
+                                        <div style="color: #f2f2f2; font-size: 25px;">
+                                            @ViewBag.Groupchat.Name
+                                        </div>
+                                      
                                         <div class="pt-3 pe-3 overflow-auto" style="position: relative; height: 400px">
 
                                             @foreach (var message in ViewBag.Messages)
@@ -89,7 +101,7 @@
                                                 {
                                                     <div class="d-flex flex-row justify-content-end">
                                                         <div>
-                                                            <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">
+                                                            <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color:#A63F65; color: #f2f2f2">
                                                                 @message.Text
                                                             </p>
                                                             <p class="small ms-3 mb-3 rounded-3 text-muted float-end">@message.Date</p>
@@ -101,7 +113,7 @@
                                                     <div class="d-flex flex-row justify-content-start">
                                                         @message.User.UserName
                                                         <div>
-                                                            <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">
+                                                            <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #332640;">
                                                                 @message.Text
                                                             </p>
                                                             <p class="small ms-3 mb-3 rounded-3 text-muted float-end">@message.Date</p>
@@ -116,7 +128,7 @@
 
                                                 <input type="hidden" name="GroupchatId" value="@ViewBag.Groupchat.GroupchatId" />
 
-                                                <textarea class="form-control" name="Text" placeholder="Write message"></textarea>
+                                                <textarea class="form-control" name="Text" placeholder="Write message" style="background-color:  #3A3240; color: #f2f2f2;"></textarea>
 
                                                 <button class="btn btn-light btn-lg btn-rounded float-end" type="submit"><i class="bi bi-send"></i></button>
                                             </div>
@@ -128,10 +140,47 @@
                                     <div class="col-md-6 col-lg-7 col-xl-8">
                                         <h5> This is the itinerary you're planning for @ViewBag.Groupchat.Name!</h5>
                                         <div class="d-flex justify-content-between">
-                                            <div>
+                                            <div style="width: 90%;">
                                                 <h6> Staying period: @ViewBag.Itinerary.StayingPeriod days</h6>
+
                                                 <h6> Budget: @ViewBag.Itinerary.Budget</h6>
+                                                <h6> Spending: @ViewBag.Itinerary.Spending</h6>
+
+                                                @*generated by github copilot*@
+                                                @{
+                                                    double percentage = (double)ViewBag.Itinerary.Spending / ViewBag.Itinerary.Budget * 100;
+                                                    if (ViewBag.Itinerary.Budget == 0)
+                                                    {
+                                                        percentage = 100;
+                                                    }
+                                                    String percentageString = "width: " + percentage.ToString("0.00") + "%;";
+                                                }
+
+                                                @if (ViewBag.Itinerary.Spending > ViewBag.Itinerary.Budget)
+                                                {
+                                                    <h6 class="text-danger"> Overspending! </h6>
+                                                    <div class="progress" style="width: 100%;">
+                                                        <div class="progress-label">
+                                                            @ViewBag.Itinerary.Spending/@ViewBag.Itinerary.Budget 
+                                                        </div>
+                                                        <div class="progress-bar bg-danger" style="width: 100%" role="progressbar" aria-valuemax="@ViewBag.Itinerary.Budget" aria-valuemin="0" aria-valuemax="@ViewBag.Itinerary.Budget"></div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <h6 class="text-success"> Still within budget! </h6>
+                                                    <div class="progress" style="width: 100%;">
+                                                        <div class="progress-label">
+                                                            @ViewBag.Itinerary.Spending/@ViewBag.Itinerary.Budget
+                                                        </div>
+                                                        <div class="progress-bar bg-success" style=@percentageString role="progressbar" aria-valuenow="@ViewBag.Itinerary.Spending" aria-valuemin="0" aria-valuemax="@ViewBag.Itinerary.Budget"></div>
+                                                    </div>
+                                                }
+
+                                                <br/>
+
                                             </div>
+
                                             <div>
                                                 <a href="/Itineraries/Edit/@ViewBag.Itinerary.ItineraryId" class="btn btn-outline-secondary"><i class="bi bi-pencil-square"></i></a>
                                             </div>
@@ -153,7 +202,7 @@
                                                     {
                                                         <div class="carousel-item active">
                                                             <div class="d-flex justify-content-center w-100 bg-secondary">
-                                                                <div class="card m-3" style="width: 15rem; background-color: white;">
+                                                                <div class="card m-3" style="width: 15rem; background-color: #3A3240;">
                                                                     <div class="card-body">
                                                                         <img src="@p.Post.Photo" class="card-img-top" alt="@p.Post.Title" style="border-radius: 8px; width: 13rem; height: 15rem; ">
                                                                         <div class="d-flex flex-row justify-content-between align-items-center">
@@ -163,6 +212,23 @@
                                                                         <h5 class="card-subtitle mb-2 text-muted">@p.Description</h5>
 
                                                                         <div class="d-flex justify-content-around">
+                                                                            @{
+                                                                                IEnumerable<dynamic> votes = p.Votes;
+                                                                            }
+                                                                            @if (votes.FirstOrDefault(v => v.UserId == ViewBag.CurrentUserId) == null)
+                                                                            {
+                                                                                <button class="btn btn-outline-secondary"><i class="bi bi-hand-thumbs-up-fill"></i></button>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <form method="post" action="/Votes/Delete">
+                                                                                    <input type="hidden" name="UserId" value="@ViewBag.CurrentUserId" />
+                                                                                    <input type="hidden" name="PostId" value="@p.PostId" />
+                                                                                    <input type="hidden" name="ItineraryId" value="@p.ItineraryId" />
+                                                                                    <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-hand-thumbs-up-fill"></i></button>
+                                                                                </form>
+                                                                            }
+
                                                                             <a href="/PostInItineraries/Edit/@p.PostId/@p.ItineraryId" class="btn btn-outline-secondary"> <i class="bi bi-pencil-square"></i> </a>
 
                                                                             <a href="/Posts/Show/@p.Post.PostId" class="btn btn-outline-secondary"><i class="bi bi-eye"></i></a>
@@ -186,7 +252,7 @@
                                                     {
                                                         <div class="carousel-item">
                                                             <div class="d-flex justify-content-center w-100 bg-secondary">
-                                                                <div class="card m-3" style="width: 15rem; background-color: white;">
+                                                                <div class="card m-3" style="width: 15rem; background-color: #3A3240;">
                                                                     <div class="card-body">
                                                                         <img src="@p.Post.Photo" class="card-img-top" alt="@p.Post.Title" style="border-radius: 8px; width: 13rem; height: 15rem; ">
                                                                         <div class="d-flex flex-row justify-content-between align-items-center">
@@ -195,7 +261,24 @@
                                                                         </div>
                                                                         <h5 class="card-subtitle mb-2 text-muted">@p.Description</h5>
 
-                                                                         <div class="d-flex justify-content-around">
+                                                                        <div class="d-flex justify-content-around">
+                                                                            @{
+                                                                                IEnumerable<dynamic> votes = p.Votes;
+                                                                            }
+                                                                            @if (votes.FirstOrDefault(v => v.UserId == ViewBag.CurrentUserId) == null)
+                                                                            {
+                                                                                    <button class="btn btn-outline-secondary"><i class="bi bi-hand-thumbs-up-fill"></i></button>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <form method="post" action="/Votes/Delete">
+                                                                                    <input type="hidden" name="UserId" value="@ViewBag.CurrentUserId" />
+                                                                                    <input type="hidden" name="PostId" value="@p.PostId" />
+                                                                                    <input type="hidden" name="ItineraryId" value="@p.ItineraryId" />
+                                                                                    <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-hand-thumbs-up"></i></button>
+                                                                                </form>
+                                                                            }
+
                                                                             <a href="/PostInItineraries/Edit/@p.PostId/@p.ItineraryId" class="btn btn-outline-secondary"> <i class="bi bi-pencil-square"></i> </a>
 
                                                                             <a href="/Posts/Show/@p.Post.PostId" class="btn btn-outline-secondary"><i class="bi bi-eye"></i></a>
@@ -205,8 +288,8 @@
                                                                                 <input type="hidden" name="ItineraryId" value="@p.ItineraryId" />
                                                                                 <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-calendar-minus"></i></button>
                                                                             </form>
-                                                                         </div>                                                                        
-                                                                       
+                                                                        </div>
+
                                                                     </div>
                                                                 </div>
                                                             </div>

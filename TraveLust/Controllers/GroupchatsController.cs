@@ -59,10 +59,13 @@ namespace TraveLust.Controllers
             {
                 Itinerary itinerary = db.Itineraries
                     .Include(p => p.PostInItineraries)
+                    .ThenInclude(p => p.Votes)
+                    .Include(p => p.PostInItineraries)
                     .ThenInclude(p => p.Post)
                     .Where(i => i.ItineraryId == id2).FirstOrDefault();
                 ViewBag.Itinerary = itinerary;
             }
+
             return View();
         }
 

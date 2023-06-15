@@ -15,6 +15,8 @@ namespace TraveLust.Models
 
         public double Budget { get; set; }
 
+        public double Spending { get; set; }
+
         [NotMapped]
         public IEnumerable<SelectListItem>? TopPosts { get; set; }
     }
