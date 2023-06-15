@@ -202,7 +202,7 @@
                                                     {
                                                         <div class="carousel-item active">
                                                             <div class="d-flex justify-content-center w-100 bg-secondary">
-                                                                <div class="card m-3" style="width: 15rem; background-color: white;">
+                                                                <div class="card m-3" style="width: 15rem; background-color: #3A3240;">
                                                                     <div class="card-body">
                                                                         <img src="@p.Post.Photo" class="card-img-top" alt="@p.Post.Title" style="border-radius: 8px; width: 13rem; height: 15rem; ">
                                                                         <div class="d-flex flex-row justify-content-between align-items-center">
@@ -217,12 +217,7 @@
                                                                             }
                                                                             @if (votes.FirstOrDefault(v => v.UserId == ViewBag.CurrentUserId) == null)
                                                                             {
-                                                                                <form method="post" action="/Votes/New">
-                                                                                    <input type="hidden" name="UserId" value="@ViewBag.CurrentUserId" />
-                                                                                    <input type="hidden" name="PostId" value="@p.PostId" />
-                                                                                    <input type="hidden" name="ItineraryId" value="@p.ItineraryId" />
-                                                                                    <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-hand-thumbs-up-fill"></i></button>
-                                                                                </form>
+                                                                                <button class="btn btn-outline-secondary"><i class="bi bi-hand-thumbs-up-fill"></i></button>
                                                                             }
                                                                             else
                                                                             {
@@ -230,7 +225,7 @@
                                                                                     <input type="hidden" name="UserId" value="@ViewBag.CurrentUserId" />
                                                                                     <input type="hidden" name="PostId" value="@p.PostId" />
                                                                                     <input type="hidden" name="ItineraryId" value="@p.ItineraryId" />
-                                                                                    <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-hand-thumbs-up"></i></button>
+                                                                                    <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-hand-thumbs-up-fill"></i></button>
                                                                                 </form>
                                                                             }
 
@@ -272,12 +267,7 @@
                                                                             }
                                                                             @if (votes.FirstOrDefault(v => v.UserId == ViewBag.CurrentUserId) == null)
                                                                             {
-                                                                                <form method="post" action="/Votes/New">
-                                                                                    <input type="hidden" name="UserId" value="@ViewBag.CurrentUserId" />
-                                                                                    <input type="hidden" name="PostId" value="@p.PostId" />
-                                                                                    <input type="hidden" name="ItineraryId" value="@p.ItineraryId" />
-                                                                                    <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-hand-thumbs-up-fill"></i></button>
-                                                                                </form>
+                                                                                    <button class="btn btn-outline-secondary"><i class="bi bi-hand-thumbs-up-fill"></i></button>
                                                                             }
                                                                             else
                                                                             {

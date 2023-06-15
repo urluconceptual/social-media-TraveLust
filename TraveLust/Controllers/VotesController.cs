@@ -47,37 +47,34 @@ namespace TraveLust.Controllers
             return RedirectToAction("Index", "Groupchats", new { id1 =  groupchat.GroupchatId, id2 = itinerary.ItineraryId});
         }
 
-        [HttpPost]
-        public IActionResult Delete(Vote vote)
-        {   
-            Itinerary itinerary = db.Itineraries.Find(vote.ItineraryId);
-            Groupchat groupchat = db.Groupchats.Where(g => g.ItineraryId == itinerary.ItineraryId).FirstOrDefault();
+        //[HttpPost]
+        //public IActionResult Delete(Vote vote)
+        //{
+        //    Itinerary itinerary = db.Itineraries.Find(vote.ItineraryId);
+        //    Groupchat groupchat = db.Groupchats.Where(g => g.ItineraryId == itinerary.ItineraryId).FirstOrDefault();
+        //    PostInItinerary postInItinerary = db.PostInItineraries
+        //                                        .Where(p => p.ItineraryId == vote.ItineraryId)
+        //                                        .Where(p => p.PostId == vote.PostId)
+        //                                        .FirstOrDefault();
 
-            PostInItinerary postInItinerary = db.PostInItineraries
-                                                .Where(p => p.ItineraryId == vote.ItineraryId)
-                                                .Where(p => p.PostId == vote.PostId)
-                                                .FirstOrDefault();
+        //    if (isConfirmed(postInItinerary))
+        //    {
+        //        // if the post is confirmed, then add the price to spending
+        //        var p = db.PostInItineraries
+        //                     .Include("Post")
+        //                     .Where(i => i.ItineraryId == postInItinerary.ItineraryId)
+        //                     .Select(i => i.Post.Price)
+        //                     .FirstOrDefault();
 
-            bool wasConfirmed = isConfirmed(postInItinerary);
+        //        itinerary.Spending -= p;
+        //        db.SaveChanges();
+        //    }
 
-            db.Votes.Remove(vote);
-            db.SaveChanges();
+        //    db.Votes.Remove(vote);
+        //    db.SaveChanges();
 
-            if(wasConfirmed && !isConfirmed(postInItinerary))
-            {
-                // if the post was confirmed, but now it's not, then subtract the price from spending
-                var p = db.PostInItineraries
-                             .Include("Post")
-                             .Where(i => i.ItineraryId == postInItinerary.ItineraryId)
-                             .Select(i => i.Post.Price)
-                             .FirstOrDefault();
-                itinerary.Spending -= p;
-                db.SaveChanges();
-            }
-           
-
-            return RedirectToAction("Index", "Groupchats", new { id1 = groupchat.GroupchatId, id2 = itinerary.ItineraryId });
-        }
+        //    return RedirectToAction("Index", "Groupchats", new { id1 = groupchat.GroupchatId, id2 = itinerary.ItineraryId });
+        //}
 
         [NonAction]
         public bool isConfirmed(PostInItinerary postInItinerary)
