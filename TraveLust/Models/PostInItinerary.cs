@@ -16,6 +16,8 @@ namespace TraveLust.Models
 
         public string? Description { get; set; }
 
+        public virtual ICollection<Vote> Votes { get; set; }
+
         [NotMapped]
         public IEnumerable<SelectListItem>? AllItineraries { get; set; }
     }

@@ -33,11 +33,11 @@ namespace TraveLust.Controllers
             {
                 db.Messages.Add(message);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Groupchats", new { id = message.GroupchatId });
+                return RedirectToAction("Index", "Groupchats", new { id1 = message.GroupchatId });
             }
             else
             {
-                return RedirectToAction("Index", "Groupchats", new { id = message.GroupchatId });
+                return RedirectToAction("Index", "Groupchats", new { id1 = message.GroupchatId });
             }
         }
 

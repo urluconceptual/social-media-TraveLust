@@ -27,6 +27,8 @@ namespace TraveLust.Data
 
         public DbSet<PostInItinerary> PostInItineraries { get; set; }
 
+        public DbSet<Vote> Votes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -61,6 +63,8 @@ namespace TraveLust.Data
                 .WithOne(g => g.Groupchat)
                 .HasForeignKey<Itinerary>(g => g.GroupchatId);
 
+            modelBuilder.Entity<Vote>()
+                .HasKey(v => new { v.UserId, v.PostId, v.ItineraryId });
         }
     }
 }

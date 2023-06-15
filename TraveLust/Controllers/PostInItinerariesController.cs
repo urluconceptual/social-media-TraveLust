@@ -58,6 +58,12 @@ namespace TraveLust.Controllers
             {
                 db.PostInItineraries.Add(postInItinerary);
                 db.SaveChanges();
+                Vote vote = new Vote();
+                vote.PostId = postInItinerary.PostId;
+                vote.ItineraryId = postInItinerary.ItineraryId;
+                vote.UserId = _userManager.GetUserId(User);
+                db.Votes.Add(vote);
+                db.SaveChanges();
                 TempData["message"] = "Post succesfully added to itinerary!";
                 return RedirectToAction("Show", "Posts", new { id = postInItinerary.PostId });
             }
@@ -142,5 +148,15 @@ namespace TraveLust.Controllers
             }
             return selectList;
         }
+
+        [NonAction]
+        public bool isConfirmed(PostInItinerary postInItinerary)
+        {
+            Itinerary itinerary = db.Itineraries.Include("Votes").Where(i => i.ItineraryId == postInItinerary.ItineraryId).FirstOrDefault();
+            Groupchat groupchat = db.Groupchats.Include("UserInGroupchats").Where(g => g.GroupchatId == itinerary.GroupchatId)
+                .FirstOrDefault();
+            return postInItinerary.Votes.Count == groupchat.UserInGroupchats.Count;
+
+        }   
     }
 }
