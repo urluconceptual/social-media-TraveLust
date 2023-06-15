@@ -19,9 +19,7 @@ To keep track of the tasks and assign them to team members we used Jira. We crea
 ## 2. Charts
 In order to visualize the structure and the relationships of the model we used the following diagrams:
 
-[TO DO! ADD PICTURES]
-
-
+![er](ER_DIAGRAM.jpg)
 
 ## 3. Source control using GitHub
 In the process of making TraveLust we used GitHub as our main version control system. We created a new repository to store our code, different branches for each one of the phases and we used pull requests to review and merge code changes. You can access the aforementioned GitHub repository at the following link: https://github.com/urluconceptual/social-media-TraveLust
