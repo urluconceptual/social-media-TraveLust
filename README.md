@@ -33,3 +33,7 @@ We identified a bug in the development process of TraveLust, namely, we noticed 
 ## 5. Comments
 
 In order to make the code easier to read and to understand we added comments all throughout the development process. These comments acted as documentation, as well as a way to communicate between team members, making the collaboration process easier, more efficient and more reliable.
+
+## 6. AI Tools
+
+We chose to use GitHub Copilot generated code in order to make the process of writing code easier and faster, but also to learn new ways of managing code tasks. These sections are clearly marked by comments.
