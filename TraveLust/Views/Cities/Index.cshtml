@@ -1,11 +1,30 @@
 ﻿@model TraveLust.Models.City
-<h2>All the cities on TraveLust</h2>
-<br />
+
+<style>
+    .card.m-3{
+		border: 1px solid #3A3240;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(170,45,114,0.5);
+        background-color: #3A3240;
+        color: #f2f2f2;
+        width: 25rem; 
+	}
+
+    .card-header{
+        color: #A63F65; 
+    }
+
+</style>
+
 
 @if(TempData.ContainsKey("message"))
 {
     <h1>@ViewBag.message</h1>
 }
+
+
+<h2 style ="color: #f2f2f2;">All the cities on TraveLust! </h2>
+
 
 @if(User.IsInRole("Admin"))
 {
@@ -14,16 +33,15 @@
     {
        if(city.Approved == true)
        {
-           <div class="card m-3" style="width: 25rem; background-color: white;">
+            <div class="card m-3">
                 <div class="card-body">
                     <h6>@city.CityName</h6>
                     @*&emsp; leaves a 4 spacee gap*@
                     <p>&emsp; @city.Country</p>
                 </div>
 
-                <div class="card-footer">
+                <div class="card-footer d-flex justify-content-between">
                     <a class="btn btn-outline-secondary" href="/Cities/Edit/@city.CityId">Edit</a>
-
                     <form method="post" action="/Cities/Delete/@city.CityId">
                         <button class="btn btn-outline-secondary" type="submit">Delete</button>
                     </form>
@@ -32,7 +50,7 @@
         }
         else
         {
-            <div class="card m-3" style="width: 25rem; background-color: white;">
+            <div class="card m-3">
                 <div class="card-header">
                     <h4>Pending approval</h4>
                 </div>
@@ -41,7 +59,7 @@
                     @*&emsp; leaves a 4 spacee gap*@
                     <p>&emsp; @city.Country</p>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer  d-flex justify-content-between">
                     <form method="post" action="/Cities/Approve/@city.CityId">
                         <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-check2-square"></i></button>
                     </form>
@@ -61,11 +79,12 @@
 }
 else
 {
+
     @foreach (var city in ViewBag.Cities)
     {
         if (city.Approved == true)
         {
-            <div class="card m-3" style="width: 25rem; background-color: white;">
+            <div class="card m-3">
                 <div class="card-body">
                     <h6>@city.CityName</h6>
                     @*&emsp; leaves a 4 spacee gap*@
@@ -78,9 +97,11 @@ else
 
 <hr />
 <br />
-@if(User.IsInRole("Admin") || User.IsInRole("Editor") || User.IsInRole("User"))
-{
-    <p>Can't find the city you are looking for?</p>
-    <a class="btn btn-outline-secondary" href="/Cities/New">Add a new city!</a>
-}
+<div style="color: #f2f2f2">
+    @if (User.IsInRole("Admin") || User.IsInRole("Editor") || User.IsInRole("User"))
+    {
+        <p>Can't find the city you are looking for?</p>
+        <a class="btn btn-outline-secondary" href="/Cities/New">Add a new city!</a>
+    }
+</div>
 <br />
