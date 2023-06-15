@@ -54,6 +54,7 @@ namespace TraveLust.Controllers
 
                 oldItinerary.StayingPeriod = itinerary.StayingPeriod;
                 oldItinerary.Budget = itinerary.Budget;
+                oldItinerary.Spending = 0; 
                 db.SaveChanges();
 
                 return RedirectToAction("Index", "Groupchats", new { id = itinerary.GroupchatId });
@@ -109,5 +110,6 @@ namespace TraveLust.Controllers
             }
             return selectList;
         }
+
     }
 }
