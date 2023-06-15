@@ -71,6 +71,13 @@ namespace TraveLust.Controllers
                 itinerary.Spending += p;
                 db.SaveChanges();
 
+                Vote vote = new Vote();
+                vote.PostId = postInItinerary.PostId;
+                vote.ItineraryId = postInItinerary.ItineraryId;
+                vote.UserId = _userManager.GetUserId(User);
+                db.Votes.Add(vote);
+                db.SaveChanges();
+
                 TempData["message"] = "Post succesfully added to itinerary!";
                 return RedirectToAction("Show", "Posts", new { id = postInItinerary.PostId });
             }

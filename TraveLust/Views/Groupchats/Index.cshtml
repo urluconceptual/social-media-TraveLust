@@ -128,7 +128,7 @@
                                     <div class="col-md-6 col-lg-7 col-xl-8">
                                         <h5> This is the itinerary you're planning for @ViewBag.Groupchat.Name!</h5>
                                         <div class="d-flex justify-content-between">
-                                            <div>
+                                            <div style="width: 90%;">
                                                 <h6> Staying period: @ViewBag.Itinerary.StayingPeriod days</h6>
 
                                                 <h6> Budget: @ViewBag.Itinerary.Budget</h6>
@@ -148,14 +148,20 @@
                                                 {
                                                     <h6 class="text-danger"> Overspending! </h6>
                                                     <div class="progress" style="width: 100%;">
-                                                        <div class="progress-bar bg-danger" style="width: 100%" role="progressbar" aria-valuemax="@ViewBag.Itinerary.Budget" aria-valuemin="0" aria-valuemax="@ViewBag.Itinerary.Budget">@ViewBag.Itinerary.Spending/@ViewBag.Itinerary.Budget</div>
+                                                        <div class="progress-label">
+                                                            @ViewBag.Itinerary.Spending/@ViewBag.Itinerary.Budget 
+                                                        </div>
+                                                        <div class="progress-bar bg-danger" style="width: 100%" role="progressbar" aria-valuemax="@ViewBag.Itinerary.Budget" aria-valuemin="0" aria-valuemax="@ViewBag.Itinerary.Budget"></div>
                                                     </div>
                                                 }
                                                 else
                                                 {
                                                     <h6 class="text-success"> Still within budget! </h6>
                                                     <div class="progress" style="width: 100%;">
-                                                        <div class="progress-bar bg-success" style=@percentageString role="progressbar" aria-valuenow="@ViewBag.Itinerary.Spending" aria-valuemin="0" aria-valuemax="@ViewBag.Itinerary.Budget">@ViewBag.Itinerary.Spending/@ViewBag.Itinerary.Budget</div>
+                                                        <div class="progress-label">
+                                                            @ViewBag.Itinerary.Spending/@ViewBag.Itinerary.Budget
+                                                        </div>
+                                                        <div class="progress-bar bg-success" style=@percentageString role="progressbar" aria-valuenow="@ViewBag.Itinerary.Spending" aria-valuemin="0" aria-valuemax="@ViewBag.Itinerary.Budget"></div>
                                                     </div>
                                                 }
 
