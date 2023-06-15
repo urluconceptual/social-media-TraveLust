@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Moirai+One&display=swap');
 
 html {
   font-size: 14px;
@@ -67,8 +67,12 @@ a.nav-link {
 }
 
 .navbar-brand {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Moirai One', cursive !important;
     font-size: 1.5rem;
     font-weight: 700;
     color: #8C4278 !important;
+}
+
+.carousel-inner {
+    background-color: #3A3240 !important;
 }
