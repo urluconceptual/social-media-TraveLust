@@ -29,3 +29,7 @@ In the process of making TraveLust we used GitHub as our main version control sy
 
 ## 4. Bug report and pull request solution
 We identified a bug in the development process of TraveLust, namely, we noticed that when a post is liked by all users, the spending field was not updating. The code was committed and uploaded to GitHub on the phase3 branch, on Jun 15, 2023 and then a pull request was done, the bug was fixed and the code was committed and uploaded to GitHub the following hour.
+
+## 5. Comments
+
+In order to make the code easier to read and to understand we added comments all throughout the development process. These comments acted as documentation, as well as a way to communicate between team members, making the collaboration process easier, more efficient and more reliable.
