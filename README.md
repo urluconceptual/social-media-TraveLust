@@ -38,3 +38,5 @@ In order to make the code easier to read and to understand we added comments all
 ## 6. AI Tools
 
 We chose to use GitHub Copilot generated code in order to make the process of writing code easier and faster, but also to learn new ways of managing code tasks. These sections are clearly marked by comments.
+
+## 7. [Demo](https://unibucro0-my.sharepoint.com/:v:/g/personal/andrei_nicolaescu_s_unibuc_ro/EdFrJMeTczxGsC7rJzcyXPABLjuYZQjtDtnAk0FNMv18dQ)
