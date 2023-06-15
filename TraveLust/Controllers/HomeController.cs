@@ -43,7 +43,7 @@ namespace TraveLust.Controllers
                 return RedirectToAction("Index", "Posts");
             }
 
-            ViewBag.Posts = db.Posts.Include("City").OrderByDescending(o => o.Rating).Take(4);
+            ViewBag.Posts = db.Posts.Include("City").OrderByDescending(o => o.Rating).Take(3);
 
             return View();
         }
