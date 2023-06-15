@@ -21,7 +21,7 @@ In order to visualize the structure and the relationships of the model we used t
 
 ![er](ER_DIAGRAM.jpg)
 ![uml](UML_DIAGRAM.jpeg)
-![conceptual](CONCEPTUAL_DIAGRAM.jpeg)
+![conceptual](CONCEPTUAL_DIAGRAM.jpg)
 
 ## 3. Source control using GitHub
 In the process of making TraveLust we used GitHub as our main version control system. We created a new repository to store our code, different branches for each one of the phases and we used pull requests to review and merge code changes. You can access the aforementioned GitHub repository at the following link: https://github.com/urluconceptual/social-media-TraveLust
